@@ -19,7 +19,7 @@ resource "aws_instance" "web" {
   instance_type = var.instance_type
   subnet_id     = "subnet-05a84c31f489fdcc4"
 
-  vpc_security_group_ids = [modul.blog_sg.security_group_id]
+  vpc_security_group_ids = [module.blog_sg.security_group_id]
 
   tags = {
     Name = "Learning Terraform"
