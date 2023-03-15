@@ -34,8 +34,7 @@ module "vpc" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
-  subnet_id     = "subnet-05a84c31f489fdcc4"
-
+  
   vpc_security_group_ids = [module.blog_sg.security_group_id]
 
   tags = {
