@@ -35,7 +35,7 @@ module "autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "6.9.0"
   
-  name = "${var.enable_nat_gateway.name}-blog"
+  name = "${var.environment.name}-blog"
   min_size = var.asg_min_size
   max_size = var.asg_max_size
 
@@ -51,7 +51,7 @@ module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 8.0"
 
-  name = "${var.enable_nat_gateway.name}-blog-alb"
+  name = "${var.environment.name}-blog-alb"
 
   load_balancer_type = "application"
 
@@ -86,7 +86,7 @@ module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.0"
 
-  name    = "${var.enable_nat_gateway.name}-blog"
+  name    = "${var.environment.name}-blog"
   vpc_id  = module.blog_vpc.vpc_id
   ingress_rules = ["https-443-tcp","http-80-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
